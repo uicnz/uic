@@ -1,5 +1,9 @@
-# uic
+<div align="center">
 
-> Unified Intelligence Company
+<a href="https://uic.nz">
+<img src="assets/airpilot-white-black-alt.svg" alt="UIC Logo" width="250">
+</a>
 
-![alt text](assets/000000.png)
+# Unified Intel Co.
+
+</div>
