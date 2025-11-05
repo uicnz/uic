@@ -40,8 +40,9 @@
             transition: all 0.5s ease; /* Add transition for all effects */
             opacity: 0.7; /* Set initial opacity on the link */
             filter: drop-shadow(0 0 0 transparent); /* Initial state for glow */
+            pointer-events: none; /* Disable pointer events on the container */
         }
-        a:hover {
+        a.active {
             transform: scale(1.01); /* Scale link on hover */
             opacity: 1; /* Full opacity on hover */
             filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6)); /* Soft white glow on hover */
@@ -77,15 +78,34 @@
             '#22d3ee'  // cyan-400
         ];
         const link = document.querySelector('a');
+        const svg = document.querySelector('svg');
         const dot = document.getElementById('top-dot');
+        const paths = svg.querySelectorAll('path:not(#black-circle), circle:not(#black-circle)');
 
-        link.addEventListener('mouseenter', () => {
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            dot.style.stroke = randomColor;
+        let isHovering = false;
+
+        // Listen for mouseenter on visible paths
+        paths.forEach(path => {
+            path.addEventListener('mouseenter', () => {
+                if (!isHovering) {
+                    isHovering = true;
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    dot.style.stroke = randomColor;
+                    link.classList.add('active');
+                }
+            });
         });
 
-        link.addEventListener('mouseleave', () => {
+        // Listen for mouseleave on the SVG to reset
+        svg.addEventListener('mouseleave', () => {
+            isHovering = false;
             dot.style.stroke = '#ffffff';
+            link.classList.remove('active');
+        });
+
+        // Make SVG clickable to trigger the link
+        svg.addEventListener('click', () => {
+            window.open(link.href, '_blank', 'noopener,noreferrer');
         });
     </script>
 </body>
