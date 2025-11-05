@@ -17,8 +17,10 @@
             align-items: center; /* Center vertically */
         }
         svg {
-            width: 33.3333vw; /* Display logo at one-third viewport width */
-            max-height: 50vh; /* Prevent logo from exceeding screen height */
+            width: 50vw; /* Default to 50% viewport width */
+            height: auto; /* Maintain aspect ratio */
+            max-width: 50vw; /* Cap at 50% of viewport width */
+            max-height: 50vh; /* Cap at 50% of viewport height */
             display: block; /* Remove extra space below image */
             pointer-events: auto; /* Allow SVG to receive pointer events */
             cursor: default; /* Default cursor for the SVG container */
