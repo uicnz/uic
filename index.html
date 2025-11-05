@@ -20,6 +20,10 @@
             width: 33.3333vw; /* Display logo at one-third viewport width */
             max-height: 50vh; /* Prevent logo from exceeding screen height */
             display: block; /* Remove extra space below image */
+            pointer-events: auto; /* Allow SVG to receive pointer events */
+        }
+        svg path, svg circle {
+            pointer-events: stroke; /* Only respond to hover over visible strokes */
         }
         #top-dot {
             transition: stroke 0.4s ease; /* Smooth color transition */
@@ -27,6 +31,7 @@
         #black-circle {
             fill-opacity: 0 !important; /* Keep black fill transparent */
             stroke-opacity: 0 !important; /* Keep black stroke transparent */
+            pointer-events: none; /* Black circle doesn't trigger hover */
         }
         a {
             display: flex; /* Make the link a flex container */
