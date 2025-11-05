@@ -85,10 +85,12 @@
         const paths = svg.querySelectorAll('path:not(#black-circle), circle:not(#black-circle)');
 
         let isHovering = false;
+        let hoverTimeout = null;
 
         // Listen for mouseenter on visible paths
         paths.forEach(path => {
             path.addEventListener('mouseenter', () => {
+                clearTimeout(hoverTimeout);
                 if (!isHovering) {
                     isHovering = true;
                     const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -96,13 +98,15 @@
                     link.classList.add('active');
                 }
             });
-        });
 
-        // Listen for mouseleave on the SVG to reset
-        svg.addEventListener('mouseleave', () => {
-            isHovering = false;
-            dot.style.stroke = '#ffffff';
-            link.classList.remove('active');
+            path.addEventListener('mouseleave', () => {
+                clearTimeout(hoverTimeout);
+                hoverTimeout = setTimeout(() => {
+                    isHovering = false;
+                    dot.style.stroke = '#ffffff';
+                    link.classList.remove('active');
+                }, 50);
+            });
         });
 
         // Make SVG clickable to trigger the link
