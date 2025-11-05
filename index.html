@@ -21,9 +21,11 @@
             max-height: 50vh; /* Prevent logo from exceeding screen height */
             display: block; /* Remove extra space below image */
             pointer-events: auto; /* Allow SVG to receive pointer events */
+            cursor: default; /* Default cursor for the SVG container */
         }
-        svg path, svg circle {
+        svg path:not(#black-circle), svg circle:not(#black-circle) {
             pointer-events: stroke; /* Only respond to hover over visible strokes */
+            cursor: pointer; /* Show pointer cursor only over visible strokes */
         }
         #top-dot {
             transition: stroke 0.4s ease; /* Smooth color transition */
